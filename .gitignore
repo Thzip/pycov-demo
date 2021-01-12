@@ -1,0 +1,7 @@
+.idea
+*.pyc
+.allure
+.pytest_cache
+.coverage
+codecov.xml
+result.xml
