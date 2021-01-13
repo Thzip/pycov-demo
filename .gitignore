@@ -3,5 +3,7 @@
 .allure
 .pytest_cache
 .coverage
-codecov.xml
+coverage.xml
 result.xml
+report.html
+assets
