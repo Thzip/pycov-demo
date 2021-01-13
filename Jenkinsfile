@@ -32,6 +32,11 @@ pipeline {
             steps{
                 sh "python3 covrate_gate.py -P ${source_code_need_code_coverage_check} -R ${code_coverage_threshold}"
             }
+            post{
+                failure {
+                    emailext body: '模块${source_code_need_code_coverage_check}单元测试覆盖率不足${code_coverage_threshold}，详细查看构建日志${absoluteUrl}', subject: '单元测试覆盖率不足', to: 'huawei.yang@ecarx.com'
+                }
+            }
         }
     }
 }
