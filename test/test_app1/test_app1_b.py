@@ -1,5 +1,5 @@
 from pytest import mark
-from source.app1.app1_b import App1B
+from source.apps.app1.app1_b import App1B
 
 
 class TestApp1B(object):

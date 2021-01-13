@@ -2,12 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('UnitTest') {
             steps {
                 git 'https://github.com/Thzip/pycov-demo.git'
-
-				// Run test
-                sh "pytest --cov-config=.coveragerc --cov=source --cov-report=xml:coverage.xml --cov-report=term --junit-xml=result.xml --alluredir=.allure"
+                sh "pytest --cov-config=.coveragerc --cov=${source_code_need_code_coverage_check} --cov-report=xml:coverage.xml --cov-report=term --junit-xml=result.xml --alluredir=.allure ${test_case_path}"
             }
             post{
                 always{
@@ -28,8 +26,12 @@ pipeline {
                     allure includeProperties: false, jdk: '', results: [[path: '.allure']]
                 }
             }
-
         }
 
+        stage('CodeCov Gate'){
+            steps{
+                sh "python covrate_gate.py -P ${source_code_need_code_coverage_check} -R ${code_coverage_threshold}"
+            }
+        }
     }
 }

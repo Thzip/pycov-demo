@@ -1,5 +1,5 @@
 from pytest import fixture
-from source.app1.app1_a import App1A
+from source.apps.app1.app1_a import App1A
 
 
 @fixture(scope='function')
