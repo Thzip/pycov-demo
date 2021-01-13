@@ -30,7 +30,7 @@ pipeline {
 
         stage('CodeCov Gate'){
             steps{
-                sh "python covrate_gate.py -P ${source_code_need_code_coverage_check} -R ${code_coverage_threshold}"
+                sh "python3 covrate_gate.py -P ${source_code_need_code_coverage_check} -R ${code_coverage_threshold}"
             }
         }
     }
